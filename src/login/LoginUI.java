@@ -96,6 +96,7 @@ public class LoginUI extends JFrame implements ActionListener{
 		passwordText.setBounds(80, 50, 200, 25);
 		loginPanel.add(passwordText);
 		
+		//Action when click login  button 
 		loginButton = new JButton("Submit!");
 		loginButton.setBounds(125, 80, 80, 25);
 		loginButton.addActionListener(this);
@@ -104,9 +105,7 @@ public class LoginUI extends JFrame implements ActionListener{
 	
 		frame.setVisible(true);
 		
-		
-		//Action when click login  button 
-		loginButton.addActionListener(this);
+		//page title
 		setTitle("Login Page") ;
 	}
 	
