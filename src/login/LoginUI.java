@@ -84,7 +84,7 @@ public class LoginUI extends JFrame implements ActionListener{
 		usernameLabel.setBounds(10, 20, 80, 25);
 		loginPanel.add(usernameLabel);
 		
-		usernameText = new JTextField(30);
+		usernameText = new JTextField(26);
 		usernameText.setBounds(80, 20, 200, 25);
 		loginPanel.add(usernameText);
 		
@@ -113,7 +113,7 @@ public class LoginUI extends JFrame implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e) {
 
-		username= usernameText.getText();
+		username= usernameText.getText().toUpperCase();
 		password= passwordText.getText(); 
 		
 		System.out.println(username);
