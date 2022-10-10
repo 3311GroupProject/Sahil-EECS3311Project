@@ -25,7 +25,7 @@ public class LoginUI extends JFrame implements ActionListener{
 	private static JButton loginButton;
 	private static JPanel loginPanel;
 	private static String username , password ;
-	
+	private static JFrame frame;
 	
 	// Calling the constructor
 	 
@@ -43,33 +43,66 @@ public class LoginUI extends JFrame implements ActionListener{
 
 	LoginUI(){
 		
-		usernameLabel= new JLabel();
-		usernameLabel = new JLabel("Username");
-		usernameText= new JTextField(26);  // Setting length of user to be 26 character
+		//usernameLabel= new JLabel();
+		//usernameLabel = new JLabel("Username");
+		//usernameText= new JTextField(26);  // Setting length of user to be 26 character
 		
-		passwordLabel=new JLabel();
-		passwordLabel=new JLabel("Password");
-		passwordText= new JPasswordField();
+		//passwordLabel=new JLabel();
+		//passwordLabel=new JLabel("Password");
+		//passwordText= new JPasswordField();
 		
 		
-		loginButton= new JButton("Login");
+		//loginButton= new JButton("Login");
 		
 		
 		//Creating Panel
 		
 		//
-		loginPanel =new JPanel(new GridLayout(3, 1));
+		//loginPanel =new JPanel(new GridLayout(3, 1));
 		
+		//loginPanel.add(usernameLabel);
+		//loginPanel.add(usernameText);
+		
+		//loginPanel.add(passwordLabel);
+		//loginPanel.add(passwordText);	
+		
+		//loginPanel.add(loginButton);
+		
+		
+		//add(loginPanel, BorderLayout.CENTER);
+		
+		JFrame frame = new JFrame();
+		JPanel loginPanel = new JPanel();
+		frame.setSize(350, 150);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		frame.add(loginPanel);
+		
+		loginPanel.setLayout(null);
+		
+		usernameLabel = new JLabel("Username:");
+		usernameLabel.setBounds(10, 20, 80, 25);
 		loginPanel.add(usernameLabel);
+		
+		usernameText = new JTextField(30);
+		usernameText.setBounds(80, 20, 200, 25);
 		loginPanel.add(usernameText);
 		
+		passwordLabel = new JLabel("Password:");
+		passwordLabel.setBounds(10, 50, 80, 25);
 		loginPanel.add(passwordLabel);
-		loginPanel.add(passwordText);	
+		
+		passwordText = new JPasswordField();
+		passwordText.setBounds(80, 50, 200, 25);
+		loginPanel.add(passwordText);
+		
+		loginButton = new JButton("Submit!");
+		loginButton.setBounds(125, 80, 80, 25);
+		loginButton.addActionListener(this);
 		
 		loginPanel.add(loginButton);
-		
-		
-		add(loginPanel, BorderLayout.CENTER);
+	
+		frame.setVisible(true);
 		
 		
 		//Action when click login  button 
@@ -116,8 +149,8 @@ public class LoginUI extends JFrame implements ActionListener{
 		try {
 			
 			LoginUI login1 = new LoginUI();
-			login1.setSize(450, 130);;
-			login1.setVisible(true);
+			//login1.setSize(450, 130);;
+			//login1.setVisible(true);
 	
 		}
 		
