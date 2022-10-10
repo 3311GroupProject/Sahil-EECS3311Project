@@ -9,18 +9,17 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 
 
-
+//are we using this as population fetcher?
 public class DataFetcher1 {
 	
 	public static String aCountry ="CAN" ;
 	public static int startDate ;
 	public static int endDate;
 	
-	//Make an adaptor here to get indicators 
-
+	//Make an adaptor here to get indicators
 	public static String indicatorType="SP.POP.TOTL";
 
-	
+
 	
 
 	public static void main(String[] args) {
