@@ -41,7 +41,7 @@ public class LoginUI extends JFrame implements ActionListener{
 
 
 
-	LoginUI(){
+	public LoginUI(){
 		
 		//usernameLabel= new JLabel();
 		//usernameLabel = new JLabel("Username");

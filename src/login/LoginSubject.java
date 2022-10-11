@@ -1,7 +1,7 @@
 package login;
 
-public class LoginSubject implements Login{
-	private static Login login;
+public class LoginSubject implements ILogin{
+	private static ILogin login;
 
 	@Override
 	public boolean doValidate(String u, String p, String m) {

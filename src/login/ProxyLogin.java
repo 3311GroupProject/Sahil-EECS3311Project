@@ -19,8 +19,8 @@ import java.util.Map;
 
 
 
-public class ProxyLogin implements Login{
-	private static Login login;
+public class ProxyLogin implements ILogin{
+	private static ILogin login;
 	String incomingUsername, incomingPassword ;
 	static boolean loginStatus=false ;
 	static String loginMessage;
@@ -52,6 +52,7 @@ public class ProxyLogin implements Login{
 			Document doc = builder.parse("userDatabase.xml");
 			//doc.getDocumentElement().normalize();
 			NodeList userList =doc.getElementsByTagName("crendential");
+			System.out.println("this is printing the node elements from the xml");
 			for(int i = 0; i < userList.getLength(); i++)
 			{
 				Node u = userList.item(i);
@@ -59,14 +60,17 @@ public class ProxyLogin implements Login{
 					Element credential = (Element) u;
 					String id = credential.getAttribute("id");
 					NodeList credentialList = credential.getChildNodes();
+					
 					for(int j=0; j< credentialList.getLength(); j++ )
 					{
 						Node n =credentialList.item(j);
 						if(n.getNodeType()==Node.ELEMENT_NODE) {
 							Element uname = (Element) n;
 							System.out.println("user " + id + ":" + uname.getTagName() + "=" + uname.getTextContent());
-							k = n.getFirstChild().getNextSibling()
-							userMap.put(n.getFirstChild().getTextContent(), n.getFirstChild().getNextSibling().getTextContent());
+							
+							//currently stuck on getting the node elements to a hashmap or map
+							//Element k = (Element) n.getFirstChild().getNextSibling();
+							//userMap.put(n.getFirstChild().getTextContent(), n.getFirstChild().getNextSibling().getTextContent());
 						}
 					}
 				}
@@ -138,7 +142,7 @@ public class ProxyLogin implements Login{
 	public static void main(String[] args) {
 		String un = "hi";
 		String pa = "no";
-		Login test = new ProxyLogin(un, pa);
+		ILogin test = new ProxyLogin(un, pa);
 		test.doValidate(un, pa, pa);
 		
 	}	
