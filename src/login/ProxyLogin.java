@@ -3,18 +3,24 @@ package login;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.DocumentBuilder;  
 import org.w3c.dom.Document;  
-import org.w3c.dom.NodeList;  
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 import org.w3c.dom.Node;  
 import org.w3c.dom.Element;  
 import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 
 
 
 
-public class ProxyLogin {
+public class ProxyLogin implements Login{
+	private static Login login;
 	String incomingUsername, incomingPassword ;
 	static boolean loginStatus=false ;
 	static String loginMessage;
@@ -35,7 +41,52 @@ public class ProxyLogin {
 	public boolean doValidate(String username, String password ,String loginMessage) {
 		boolean flag=false ;
 		
+		
+		
+		Map<String, String> userMap = new HashMap<String, String>(); 
+		
+		
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		try {
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			Document doc = builder.parse("userDatabase.xml");
+			//doc.getDocumentElement().normalize();
+			NodeList userList =doc.getElementsByTagName("crendential");
+			for(int i = 0; i < userList.getLength(); i++)
+			{
+				Node u = userList.item(i);
+				if(u.getNodeType()== Node.ELEMENT_NODE) {
+					Element credential = (Element) u;
+					String id = credential.getAttribute("id");
+					NodeList credentialList = credential.getChildNodes();
+					for(int j=0; j< credentialList.getLength(); j++ )
+					{
+						Node n =credentialList.item(j);
+						if(n.getNodeType()==Node.ELEMENT_NODE) {
+							Element uname = (Element) n;
+							System.out.println("user " + id + ":" + uname.getTagName() + "=" + uname.getTextContent());
+							k = n.getFirstChild().getNextSibling()
+							userMap.put(n.getFirstChild().getTextContent(), n.getFirstChild().getNextSibling().getTextContent());
+						}
+					}
+				}
+			}
+		}
+		catch(ParserConfigurationException e)
+		{
+			e.printStackTrace();
+		}
+		catch(SAXException e)
+		{
+			e.printStackTrace();
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
+		System.out.println(userMap.keySet());
 		return flag;
+		}
 		
 		
 		//-----------Parsing XML file ----------
@@ -84,7 +135,13 @@ public class ProxyLogin {
 		
 		
 
+	public static void main(String[] args) {
+		String un = "hi";
+		String pa = "no";
+		Login test = new ProxyLogin(un, pa);
+		test.doValidate(un, pa, pa);
 		
+	}	
 	}
 	
 
@@ -93,4 +150,3 @@ public class ProxyLogin {
 	
 	
 
-}

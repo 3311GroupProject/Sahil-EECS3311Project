@@ -1,13 +1,14 @@
 <?xml version="1.0"?>
-<logininfo>
-    <crendential> 
-        <id>0001</id>
+<logininfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="userDatabase.xsd">
+    <crendential id ="1"> 
+       
         <username>Admin1</username>
         <password>Password1</password>
     </crendential>
     
-    <crendential>
-        <id>0002</id>
+    <crendential id ="2">
+       
         <username>Admin2</username>
         <password>Password2</password>
     </crendential>

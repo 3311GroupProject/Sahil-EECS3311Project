@@ -10,7 +10,7 @@ import com.google.gson.JsonParser;
 
 
 
-public class DataFetcher1 {
+public class DataFetcher2 {
 
     public static String aCountry ="CAN" ;
     public static int startDate ;
