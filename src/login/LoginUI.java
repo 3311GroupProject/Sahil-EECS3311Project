@@ -119,7 +119,8 @@ public class LoginUI extends JFrame implements ActionListener{
 		System.out.println(username);
 		System.out.println(password);
 		
-		ProxyLogin checkLogin=new ProxyLogin(username,password);
+		ProxyLogin proxy =new ProxyLogin(username,password);
+		proxy.doValidate(username, password, password);
 		
 		
 		
